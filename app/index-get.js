@@ -14,15 +14,11 @@ module.exports = async () => {
   // Assemblage des fichiers
   // REVIEW
 
-  const listeResultats = await Promise.all([
+  const [BASE_OF_HTML, TITLE_HTML, CONTENT_HTML] = await Promise.all([
     lireFichierHtml("/baseof.html"),
     lireFichierHtml("/home.title.html"),
     lireFichierHtml("/home.content.html"),
   ]);
-
-  const BASE_OF_HTML = listeResultats[0];
-  const TITLE_HTML = listeResultats[1];
-  const CONTENT_HTML = listeResultats[2];
 
   // Retourner les données
   const HOME = BASE_OF_HTML.replaceAll("{{TITLE}}", TITLE_HTML).replace(
