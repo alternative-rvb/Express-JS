@@ -12,7 +12,7 @@ const PORT = 8080;
 const app = express();
 
 // Importer la logique de la page d'accueil
-const genererPageAccueil = require("./pages/index-get.js");
+const genererPageAccueil = require("./app/index-get.js");
 
 // Démarer le serveur et écouter un port
 app.get('/', async (req, res) => {
