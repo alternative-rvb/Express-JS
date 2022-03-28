@@ -14,19 +14,13 @@ const app = express();
 // Importer la logique de la page d'accueil
 const genererPage = require("./app/get-page.js");
 
-// Ecouter la méthode GET et la route "/"
-app.get("/", async (req, res) => {
+// Ecouter la méthode GET et la route "/" (regex)
+app.get(/^\/(|home|about|contact)$/, async (req, res) => {
   // Récuperer le contenu de la page d'accueil
-  const homePage = await genererPage('home');
+  const nomPage = req.params[0] ? req.params[0] : "home";
+  const homePage = await genererPage(nomPage);
   // Retourner le contenu
-  res.send(homePage);
-});
-// Ecouter la méthode GET et la route "/contact"
-app.get("/contact", async (req, res) => {
-  // Récuperer le contenu de la page d'accueil
-  const contactPage = await genererPage('contact');
-  // Retourner le contenu
-  res.send(contactPage);
+  res.send(homePage); 
 });
 
 // Ecouter les requêtes du repertoire statics
