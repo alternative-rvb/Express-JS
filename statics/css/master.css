@@ -27,3 +27,25 @@ nav a {
   margin: 0;
   border: none;
 }
+
+input, textarea {
+  width: 100%;
+}
+
+/**/
+
+.d-flex {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.fd-col {
+  flex-direction: column;
+}
+
+.g-1 {
+  gap: 1rem;
+}

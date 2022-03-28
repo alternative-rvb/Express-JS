@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /* eslint-env node, es6 */
 
 //ANCHOR Importer le module express
@@ -12,22 +12,28 @@ const PORT = 8080;
 const app = express();
 
 // Importer la logique de la page d'accueil
-const genererPageAccueil = require("./app/index-get.js");
+const genererPage = require("./app/get-page.js");
 
-// Démarer le serveur et écouter un port
-app.get('/', async (req, res) => {
+// Ecouter la méthode GET et la route "/"
+app.get("/", async (req, res) => {
   // Récuperer le contenu de la page d'accueil
-  const contenu = await genererPageAccueil();
+  const homePage = await genererPage('home');
   // Retourner le contenu
-  res.send(contenu);
-  
+  res.send(homePage);
+});
+// Ecouter la méthode GET et la route "/contact"
+app.get("/contact", async (req, res) => {
+  // Récuperer le contenu de la page d'accueil
+  const contactPage = await genererPage('contact');
+  // Retourner le contenu
+  res.send(contactPage);
 });
 
 // Ecouter les requêtes du repertoire statics
 // Retourner les fichiers du dossier statics
-app.use('/statics',express.static('statics'));
+app.use("/statics", express.static("statics"));
 
-// Ecouter la méthode GET et la route "/"
+// Démarer le serveur et écouter un port
 app.listen(PORT, (error) => {
   if (error) {
     console.log("Error: " + error);
