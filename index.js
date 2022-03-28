@@ -13,14 +13,24 @@ const app = express();
 
 // Importer la logique de la page d'accueil
 const genererPage = require("./app/get-page.js");
+const genererArticle = require("./app/get-article.js");
 
 // Ecouter la méthode GET et la route "/" (regex)
 app.get(/^\/(|home|about|contact)$/, async (req, res) => {
   // Récuperer le contenu de la page d'accueil
   const nomPage = req.params[0] ? req.params[0] : "home";
-  const homePage = await genererPage(nomPage);
+  const pageHtml = await genererPage(nomPage);
   // Retourner le contenu
-  res.send(homePage); 
+  res.send(pageHtml); 
+});
+
+// Ecouter la méthode GET et la route "/article/{NUMERO_ARTICLE}"
+app.get(/^\/article\/(\d+)$/, async (req, res) => {
+  // Récuperer le contenu de la page d'accueil
+  const artnumber = req.params[0];
+  const articlehtml = await genererArticle(artnumber);
+  // Retourner le contenu
+  res.send(articlehtml); 
 });
 
 // Ecouter les requêtes du repertoire statics
