@@ -12,3 +12,18 @@
     --preformatted: #ccc;
     --disabled: #111;
   } */
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav a {
+  margin: 0;
+}
+
+.nav__logo {
+  margin: 0;
+  border: none;
+}

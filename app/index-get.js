@@ -2,11 +2,13 @@
 /* eslint-env node, es6 */
 
 const fs = require("fs");
+const {join} = require("path");
 
 const ENCODING = {encoding: "utf8"};
-const TEMPLATE_PATH = "./layouts/baseof.html";
-const HOME_TITLE_PATH = "./layouts/home.title.html";
-const HOME_CONTENT_PATH = "./layouts/home.content.html";
+const PATH = "./layouts"
+const TEMPLATE_PATH = join(PATH,"/baseof.html");
+const HOME_TITLE_PATH = join(PATH,"/home.title.html");
+const HOME_CONTENT_PATH = join(PATH,"/home.content.html");
 
 module.exports = async () => {
   // Assemblage des fichiers
