@@ -13,9 +13,16 @@ const lireFichierHtml = (file) =>
 module.exports = async () => {
   // Assemblage des fichiers
   // REVIEW
-  const BASE_OF_HTML = await lireFichierHtml("/baseof.html");
-  const TITLE_HTML = await lireFichierHtml("/home.title.html");
-  const CONTENT_HTML = await lireFichierHtml("/home.content.html");
+
+  const listeResultats = await Promise.all([
+    lireFichierHtml("/baseof.html"),
+    lireFichierHtml("/home.title.html"),
+    lireFichierHtml("/home.content.html"),
+  ]);
+
+  const BASE_OF_HTML = listeResultats[0];
+  const TITLE_HTML = listeResultats[1];
+  const CONTENT_HTML = listeResultats[2];
 
   // Retourner les données
   const HOME = BASE_OF_HTML.replaceAll("{{TITLE}}", TITLE_HTML).replace(
